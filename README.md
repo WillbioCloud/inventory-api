@@ -1,5 +1,7 @@
 # 📦 Inventory Management API
 
+[![API Live no Render](https://img.shields.io/badge/Swagger-Testar_API_na_Nuvem-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)](https://inventory-api-yvvz.onrender.com/swagger-ui/index.html)
+
 Uma API RESTful corporativa para gestão de estoque, controle de movimentações e geração de relatórios de produtos e categorias.
 
 ## 🚀 Tecnologias Utilizadas
@@ -20,4 +22,18 @@ O projeto segue o padrão de design em camadas (Controller -> Service -> Reposit
 1. Certifique-se de ter o **Docker** e o **Docker Compose** instalados na sua máquina.
 2. Clone este repositório:
    ```bash
-   git clone [https://github.com/WillbioCloud/inventory-api.git](https://github.com/WillbioCloud/inventory-api.git)
+   git clone https://github.com/WillbioCloud/inventory-api.git
+Acesse a pasta do projeto e suba os containers (Banco de Dados + API):
+
+
+docker compose up -d --build
+
+A API estará disponível na porta 8080.
+
+  ```markdown
+📚 Documentação da API (Swagger)
+Com a aplicação rodando, acesse a interface interativa do Swagger para testar os endpoints:
+
+Em Produção (Nuvem): Acessar Swagger Live
+
+Localhost: http://localhost:8080/swagger-ui/index.html
