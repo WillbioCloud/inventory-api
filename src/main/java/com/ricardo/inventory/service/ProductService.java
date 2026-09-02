@@ -22,6 +22,11 @@ public class ProductService {
         return repository.findAll();
     }
 
+    public Product findById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado com o ID: " + id));
+    }
+
     public Product update(Long id, Product updateData) {
         // 1. Busca o produto existente
         Product existingProduct = repository.findById(id)

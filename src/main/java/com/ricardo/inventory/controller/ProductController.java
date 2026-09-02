@@ -25,6 +25,11 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
+    public Product findById(@PathVariable Long id) {
+        return service.findById(id);
+    }
+
+    @GetMapping("/{id}")
     public Product update(@PathVariable Long id, @RequestBody Product product) {
         return service.update(id, product);
     }
