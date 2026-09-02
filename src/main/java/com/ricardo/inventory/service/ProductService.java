@@ -22,9 +22,21 @@ public class ProductService {
         return repository.findAll();
     }
 
-    public Product findById(Long id) {
-        return repository.findById(id)
+    public Product update(Long id, Product updateData) {
+        // 1. Busca o produto existente
+        Product existingProduct = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado com o ID: " + id));
+
+        // 2. Atualiza os dados do produto
+        existingProduct.setName(updateData.getName());
+        existingProduct.setSku(updateData.getSku());
+        existingProduct.setPrice(updateData.getPrice());
+        existingProduct.setQuantity(updateData.getQuantity());
+        existingProduct.setCategory(updateData.getCategory());
+        existingProduct.setImagemUrl(updateData.getImagemUrl());
+
+        // 3. Salva e devolve o produto atualizado
+        return repository.save(existingProduct);
     }
 
     public void delete(Long id) {
