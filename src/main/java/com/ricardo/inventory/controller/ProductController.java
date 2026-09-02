@@ -29,7 +29,7 @@ public class ProductController {
         return service.findById(id);
     }
 
-    @GetMapping("/{id}")
+    @PutMapping("/{id}") // <--- Alterado para PUT eu tinha deixado GET
     public Product update(@PathVariable Long id, @RequestBody Product product) {
         return service.update(id, product);
     }
