@@ -29,9 +29,6 @@ public class User implements UserDetails {
 
     private String password;
 
-    public User(Object o, String login, String encryptedPassword) {
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // Todo usuário criado terá a permissão básica de "ROLE_USER"

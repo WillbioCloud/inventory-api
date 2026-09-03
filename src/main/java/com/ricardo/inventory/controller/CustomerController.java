@@ -30,7 +30,8 @@ public class CustomerController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public org.springframework.http.ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
+        return org.springframework.http.ResponseEntity.noContent().build();
     }
 }
