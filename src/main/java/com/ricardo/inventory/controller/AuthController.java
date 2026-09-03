@@ -44,7 +44,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody RegisterDTO data) {
+    public ResponseEntity<Void> register(@RequestBody RegisterDTO data) {
         // 1. Verifica se o e-mail já existe
         if (this.repository.findByLogin(data.login()) != null) return ResponseEntity.badRequest().build();
 
