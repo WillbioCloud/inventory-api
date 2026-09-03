@@ -21,6 +21,18 @@ public class CustomerService {
         return repository.findAll();
     }
 
+    public Customer update(Long id, Customer updatedData) {
+        Customer existing = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado!"));
+
+        existing.setCompany(updatedData.getCompany());
+        existing.setContact(updatedData.getContact());
+        existing.setEmail(updatedData.getEmail());
+        existing.setPhone(updatedData.getPhone());
+
+        return repository.save(existing);
+    }
+
     public void delete(Long id) {
         repository.deleteById(id);
     }
