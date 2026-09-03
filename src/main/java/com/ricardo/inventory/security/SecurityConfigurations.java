@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 
 import java.util.Arrays;
 
@@ -25,6 +26,18 @@ public class SecurityConfigurations {
 
     @Autowired
     private SecurityFilter securityFilter;
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().requestMatchers(
+                "v3/api-docs/**",
+                "/v3/api-docs",
+                "/swagger-resources/**",
+                "/swagger-ui/**",
+                "/swagger-ui.html",
+                "/webjars/**"
+        );
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -39,7 +52,7 @@ public class SecurityConfigurations {
                     // Rotas que qualquer um pode acessar sem Token
                     req.requestMatchers(HttpMethod.POST, "/auth/login").permitAll();
                     req.requestMatchers(HttpMethod.POST, "/auth/register").permitAll();
-                    req.requestMatchers("/v3/api-docs/**", "/v3/api-docs", "/swagger-ui/**", "/swagger-ui.html").permitAll();
+                    req.requestMatchers("/error").permitAll();
 
                     // Todo o resto do sistema (Produtos, Categorias, etc) é protegido pelo JWT!
                     req.anyRequest().authenticated();
