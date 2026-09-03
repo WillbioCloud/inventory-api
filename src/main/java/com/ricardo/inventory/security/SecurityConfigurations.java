@@ -39,7 +39,7 @@ public class SecurityConfigurations {
                     // Rotas que qualquer um pode acessar sem Token
                     req.requestMatchers(HttpMethod.POST, "/auth/login").permitAll();
                     req.requestMatchers(HttpMethod.POST, "/auth/register").permitAll();
-                    req.requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll();
+                    req.requestMatchers("/v3/api-docs/**", "/v3/api-docs", "/swagger-ui/**", "/swagger-ui.html").permitAll();
 
                     // Todo o resto do sistema (Produtos, Categorias, etc) é protegido pelo JWT!
                     req.anyRequest().authenticated();
