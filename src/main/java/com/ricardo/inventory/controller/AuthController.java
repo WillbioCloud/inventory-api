@@ -48,7 +48,11 @@ public class AuthController {
 
         // 2. Encripta a senha com BCrypt (nunca salva em texto puro!)
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-        User newUser = new User(null, data.login(), encryptedPassword);
+
+        User newUser = new User();
+        newUser.setLogin(data.login());
+        newUser.setPassword(encryptedPassword);
+        newUser.setName("Administrador"); //Nome padrão até a pessoa editar o perfil
 
         // 3. Salva no banco
         this.repository.save(newUser);
