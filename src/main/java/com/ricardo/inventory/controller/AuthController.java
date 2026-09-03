@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -29,7 +31,7 @@ public class AuthController {
     private TokenService tokenService;
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody AuthenticationDTO data) {
+    public ResponseEntity<Map<String, String>> login(@RequestBody AuthenticationDTO data) {
         // 1. Tenta autenticar o usuário usando os dados do banco
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
@@ -38,7 +40,7 @@ public class AuthController {
         var token = tokenService.generateToken((User) auth.getPrincipal());
 
         // 3. Devolve o token para o Postman/Front-end (como JSON, para facilitar)
-        return ResponseEntity.ok().body("{\"token\": \"" + token + "\"}");
+        return ResponseEntity.ok(Map.of("token", token));
     }
 
     @PostMapping("/register")

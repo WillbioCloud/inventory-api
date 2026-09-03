@@ -18,7 +18,7 @@ public class UserController {
 
     // Rota GET para buscar os dados do usuário logado
     @GetMapping("/me")
-    public ResponseEntity<?> getMe() {
+    public ResponseEntity<Map<String, Object>> getMe() {
         // Extrai o email do token ativo
         String login = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = service.getProfile(login);
@@ -33,7 +33,7 @@ public class UserController {
 
     // Rota PUT para atualizar o próprio perfil (Nome e Senha)
     @PutMapping("/me")
-    public ResponseEntity<?> updateMe(@RequestBody Map<String, String> body) {
+    public ResponseEntity<Map<String, Object>> updateMe(@RequestBody Map<String, String> body) {
         String login = SecurityContextHolder.getContext().getAuthentication().getName();
         User updatedUser = service.updateProfile(login, body.get("name"), body.get("password"));
 
