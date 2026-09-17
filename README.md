@@ -25,8 +25,9 @@ O projeto segue o padrão de design em camadas (Controller -> Service -> Reposit
    git clone https://github.com/WillbioCloud/inventory-api.git
 Acesse a pasta do projeto e suba os containers (Banco de Dados + API):
 
-
+```
 docker compose up -d --build
+```
 
 A API estará disponível na porta 8080.
 
